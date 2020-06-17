@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import Datos.DatosDependencia;
 import Datos.DatosUsuario;
 import Logica.LogUsuario;
 import javax.swing.JOptionPane;
@@ -237,7 +238,7 @@ public class frm_Dependencia extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     LogUsuario func =new LogUsuario();
-           DatosUsuario dts=new  DatosUsuario();
+           DatosDependencia dts=new  DatosDependencia();
     private void TxtDependenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDependenciaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtDependenciaActionPerformed
@@ -258,23 +259,13 @@ public class frm_Dependencia extends javax.swing.JInternalFrame {
         try {
             
          
-           dts.setIdusuario(Integer.getInteger(TxtidUsuario.getText()));
-           dts.setNombre(TxtNombre.getText());
-           dts.setApellido(TxtDependencia.getText());
-           dts.setTelefono(TxtCordinacion_de_zona.getText());
-           dts.setCorreo(TxtDireccion.getText());
-           dts.setNick(TxtTelefono.getText());
-           dts.setContrasena(TxtContrasena.getText());
-           dts.setRol(TxtRol.getText());
+         
                
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane,"Error "+e);
         }
         
-       if (func.insertar(dts)) {
-                   JOptionPane.showMessageDialog(rootPane, "El usuario fue registrado satisfactoriamente");
-                
-               }
+     
            
            
           

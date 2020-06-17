@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import Datos.DatosAsesor;
 import Datos.DatosUsuario;
 import Logica.LogUsuario;
 import javax.swing.JOptionPane;
@@ -231,10 +232,13 @@ public class frm_Asesor extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    LogUsuario func =new LogUsuario();
+           DatosAsesor dts=new  DatosAsesor();
     private void btnaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaccionActionPerformed
         try {
 
-            dts.setRFC(Integer.getInteger(TxtRFC.getText()));
+            dts.setRFC(TxtRFC.getText());
             dts.setNombre(TxtNombre.getText());
             dts.setApellido(TxtApellido.getText());
             dts.setDomicilio(TxtDomicilio.getText());
@@ -243,13 +247,10 @@ public class frm_Asesor extends javax.swing.JInternalFrame {
             
 
         } catch (Exception e) {
-            JOptionPane.showMessaTxtRFCtPane,"Error "+e);
+            JOptionPane.showMessageDialog(rootPane,"Tu error: "+e );
         }
 
-        if (func.insertar(dts)) {
-            JOptionPane.showMessageDialog(rootPane, "El usuario fue registrado satisfactoriamente");
-
-        }
+       
 
     }//GEN-LAST:event_btnaccionActionPerformed
 
@@ -268,8 +269,7 @@ public class frm_Asesor extends javax.swing.JInternalFrame {
     private void TxtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtApellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtApellidoActionPerformed
-    LogUsuario func =new LogUsuario();
-           DatosUsuario dts=new  DatosUsuario();
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TxtApellido;

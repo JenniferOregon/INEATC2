@@ -260,8 +260,8 @@ public class frm_usuario extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    LogUsuario func =new LogUsuario();
-           DatosUsuario dts=new  DatosUsuario();
+    LogUsuario funcUser =new LogUsuario();
+           DatosUsuario dtsUser=new  DatosUsuario();
     private void TxtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtApellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtApellidoActionPerformed
@@ -282,20 +282,20 @@ public class frm_usuario extends javax.swing.JInternalFrame {
           try {
             
          
-           dts.setIdusuario(Integer.getInteger(TxtidUsuario.getText()));
-           dts.setNombre(TxtNombreUsuario.getText());
-           dts.setApellido(TxtApellido.getText());
-           dts.setTelefono(TxtTelefono.getText());
-           dts.setCorreo(TxtCorreo.getText());
-           dts.setNick(TxtNick.getText());
-           dts.setContrasena(TxtContrasena.getText());
-           dts.setRol(TxtRol.getText());
+           dtsUser.setIdusuario(Integer.parseInt(TxtidUsuario.getText()));
+           dtsUser.setNombre(TxtNombreUsuario.getText());
+           dtsUser.setApellido(TxtApellido.getText());
+           dtsUser.setTelefono(TxtTelefono.getText());
+           dtsUser.setCorreo(TxtCorreo.getText());
+           dtsUser.setNick(TxtNick.getText());
+           dtsUser.setContrasena(TxtContrasena.getText());
+           dtsUser.setRol(TxtRol.getText());
                
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane,"Error "+e);
         }
         
-       if (func.insertar(dts)) {
+       if (funcUser.insertar(dtsUser)) {
                    JOptionPane.showMessageDialog(rootPane, "El usuario fue registrado satisfactoriamente");
                 
                }

@@ -25,17 +25,17 @@ public class LogUsuario {
         public boolean insertar(DatosUsuario dts){
         try {
             Connection cn=mysql.conectar();
-            sSql="insert into usuario(idusuario,Nombre,Apellido,Telefono,Correo,nick, Contrasena,Rol)"+
-                "values(?,?,?,?,?,?,?,?)";
+            sSql="insert into usuario(Nombre,Apellido,Telefono,Correo,nick, Contrasena,Rol)"+
+                "values(?,?,?,?,?,?,?)";
             PreparedStatement pst=cn.prepareStatement(sSql);
-            pst.setInt(1,dts.getIdusuario());
-            pst.setString(2, dts.getNombre());
-            pst.setString(3, dts.getApellido());
-            pst.setString(4, dts.getTelefono());
-            pst.setString(5, dts.getCorreo());
-            pst.setString(6, dts.getNick());
-            pst.setString(7, dts.getContrasena());
-            pst.setString(8, dts.getRol());
+           // pst.setInt(1,dts.getIdusuario());
+            pst.setString(1, dts.getNombre());
+            pst.setString(2, dts.getApellido());
+            pst.setString(3, dts.getTelefono());
+            pst.setString(4, dts.getCorreo());
+            pst.setString(5, dts.getNick());
+            pst.setString(6, dts.getContrasena());
+            pst.setString(7, dts.getRol());
             int n=pst.executeUpdate();
             if(n!=0){
                 return true;

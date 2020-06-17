@@ -11,7 +11,7 @@ package Datos;
  */
 public class DatosUsuario {
     private int idusuario;
-    private  String Nombre;
+    private String Nombre;
     private String Apellido;
     private String Telefono;
     private String Correo;

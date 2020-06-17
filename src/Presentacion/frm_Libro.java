@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import Datos.DatosLibro;
 import Datos.DatosUsuario;
 import Logica.LogUsuario;
 import javax.swing.JOptionPane;
@@ -188,7 +189,7 @@ public class frm_Libro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     LogUsuario func =new LogUsuario();
-           DatosUsuario dts=new  DatosUsuario();
+           DatosLibro dts=new  DatosLibro();
     private void TxtUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtUnidadesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtUnidadesActionPerformed
@@ -201,19 +202,15 @@ public class frm_Libro extends javax.swing.JInternalFrame {
         try {
             
          
-           dts.setIdusuario(Integer.getInteger(TxtClave.getText()));
            dts.setClave(TxtClave.getText());
            dts.setNombre(TxtNombre.getText());
-           dts.setUnidades(TxtUnidades.getText());
+           dts.setUnidades(Integer.parseInt(TxtUnidades.getText()));
                
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane,"Error "+e);
         }
         
-       if (func.insertar(dts)) {
-                   JOptionPane.showMessageDialog(rootPane, "El usuario fue registrado satisfactoriamente");
-                
-               }
+       
            
            
           
