@@ -7,6 +7,7 @@ package Presentacion;
 
 import Datos.DatosAsesor;
 import Datos.DatosUsuario;
+import Logica.LogAsesor;
 import Logica.LogUsuario;
 import javax.swing.JOptionPane;
 
@@ -233,23 +234,26 @@ public class frm_Asesor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    LogUsuario func =new LogUsuario();
-           DatosAsesor dts=new  DatosAsesor();
+    LogAsesor funcase =new LogAsesor();
+           DatosAsesor dtsasesor=new  DatosAsesor();
     private void btnaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaccionActionPerformed
         try {
 
-            dts.setRFC(TxtRFC.getText());
-            dts.setNombre(TxtNombre.getText());
-            dts.setApellido(TxtApellido.getText());
-            dts.setDomicilio(TxtDomicilio.getText());
-            dts.setTelefono(TxtTelefono.getText());
-            dts.setCorreo(TxtCorreo.getText());
+            dtsasesor.setRFC(TxtRFC.getText());
+            dtsasesor.setNombre(TxtNombre.getText());
+            dtsasesor.setApellido(TxtApellido.getText());
+            dtsasesor.setDomicilio(TxtDomicilio.getText());
+            dtsasesor.setTelefono(TxtTelefono.getText());
+            dtsasesor.setCorreo(TxtCorreo.getText());
             
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane,"Tu error: "+e );
+            JOptionPane.showMessageDialog(null,"Tu error: "+e );
         }
-
+          if (funcase.insertar(dtsasesor)) {
+                   JOptionPane.showConfirmDialog(null, "El usuario fue registrado satisfactoriamente");
+                
+               }
        
 
     }//GEN-LAST:event_btnaccionActionPerformed

@@ -5,6 +5,7 @@
  */
 package Logica;
 
+import Datos.DatosLibro;
 import Datos.DatosUsuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,17 +19,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jenni
  */
-public class LogUsuario {
+public class LogLibro {
    private Conexion mysql=new Conexion();
     private Connection cn = null;
     private String sSql="";
     public Integer totalregistros;
     
-         public DefaultTableModel mostrar(String buscar) throws SQLException{
+       public DefaultTableModel mostrar(String buscar) throws SQLException{
     DefaultTableModel modelo;
     
-    String [] titulos = {"ID","Nombre","Apellidos","Telefono 1","Correo","Nick", "Contrasena","Rol"};
-    String [] registro = new String [8];
+    String [] titulos = {"Clave","Nombre","Unidades"};
+    String [] registro = new String [3];
     
     totalregistros=0;
     modelo= new DefaultTableModel(null,titulos){
@@ -40,14 +41,9 @@ public class LogUsuario {
          Statement st = cn.createStatement();
          ResultSet rs=st.executeQuery(sSql);
          while(rs.next()){
-            registro [0]=rs.getString("idusuario");
+            registro [0]=rs.getString("Clave");
             registro [1]=rs.getString("Nombre");
-            registro [2]=rs.getString("Apellido");
-            registro [3]=rs.getString("Telefono");
-            registro [4]=rs.getString("Correo");
-            registro [5]=rs.getString("nick");
-            registro [6]=rs.getString("Contrasena");
-           registro [7]=rs.getString("Rol"); 
+            registro [2]=rs.getString("Unidades"); 
             totalregistros=totalregistros+1;
             modelo.addRow(registro);
            
@@ -56,7 +52,7 @@ public class LogUsuario {
          st.close();
          return modelo;
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, "Su error al mostrar usuario: "+e.getLocalizedMessage()+"   "+e.getMessage()+e.toString());
+            JOptionPane.showConfirmDialog(null, "Su error al mostrar usuario: "+e);
             return null;
         }finally{
         try {
@@ -69,23 +65,19 @@ public class LogUsuario {
 
         }
         }
-    }
-    
+       }
     //MEtodo para insertar
-        public boolean insertar(DatosUsuario dts){
+    
+    
+        public boolean insertar(DatosLibro dts){
         try {
             Connection cn=mysql.conectar();
-            sSql="insert into usuario(Nombre,Apellido,Telefono,Correo,nick, Contrasena,Rol)"+
-                "values(?,?,?,?,?,?,?)";
+            sSql="insert into Libro(Clave,Nombre,Unidades)"+
+                "values(?,?,?)";
             PreparedStatement pst=cn.prepareStatement(sSql);
-           // pst.setInt(1,dts.getIdusuario());
-            pst.setString(1, dts.getNombre());
-            pst.setString(2, dts.getApellido());
-            pst.setString(3, dts.getTelefono());
-            pst.setString(4, dts.getCorreo());
-            pst.setString(5, dts.getNick());
-            pst.setString(6, dts.getContrasena());
-            pst.setString(7, dts.getRol());
+             pst.setString(1, dts.getClave());
+             pst.setString(2, dts.getNombre());
+             pst.setInt(3,dts.getUnidades());
             int n=pst.executeUpdate();
             if(n!=0){
                 return true;
@@ -94,7 +86,7 @@ public class LogUsuario {
                 return false;
             }
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, e.getLocalizedMessage()+"   "+e.getMessage());
+            JOptionPane.showConfirmDialog(null, e);
             return false;
         }finally{
         try {

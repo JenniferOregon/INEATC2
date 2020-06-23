@@ -14,11 +14,11 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 public class Conexion {
 
-    public DataSource dataSource;
-    public String db = "ineatc";
-    public String url = "jdbc:mysql://localhost/" + db;
-    public String user = "root";
-    public String pass = "";
+        public DataSource dataSource;
+        public String db = "ineatc";
+        public String url = "jdbc:mysql://localhost/" + db;
+        public String user = "root";
+        public String pass = "";
 
     public Conexion() {
     }

@@ -6,8 +6,7 @@
 package Presentacion;
 
 import Datos.DatosLibro;
-import Datos.DatosUsuario;
-import Logica.LogUsuario;
+import Logica.LogLibro;
 import javax.swing.JOptionPane;
 
 /**
@@ -188,8 +187,8 @@ public class frm_Libro extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    LogUsuario func =new LogUsuario();
-           DatosLibro dts=new  DatosLibro();
+        LogLibro funclibro =new LogLibro();
+           DatosLibro dtslibro=new  DatosLibro();
     private void TxtUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtUnidadesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtUnidadesActionPerformed
@@ -200,18 +199,20 @@ public class frm_Libro extends javax.swing.JInternalFrame {
 
     private void btnaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaccionActionPerformed
         try {
-            
+           dtslibro.setClave(TxtClave.getText());
+           dtslibro.setNombre(TxtNombre.getText());
+           dtslibro.setUnidades(Integer.parseInt(TxtUnidades.getText()+""));
+           
          
-           dts.setClave(TxtClave.getText());
-           dts.setNombre(TxtNombre.getText());
-           dts.setUnidades(Integer.parseInt(TxtUnidades.getText()));
                
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane,"Error "+e);
         }
         
        
-           
+             if (funclibro.insertar(dtslibro)) {
+                   JOptionPane.showMessageDialog(rootPane, "El libro fue registrado satisfactoriamente");
+               }
            
           
     }//GEN-LAST:event_btnaccionActionPerformed

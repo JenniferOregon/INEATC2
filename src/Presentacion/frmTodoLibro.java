@@ -5,24 +5,21 @@
  */
 package Presentacion;
 
-import Logica.LogUsuario;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jenni
  */
-public class frmTodoUsuario extends javax.swing.JInternalFrame {
+public class frmTodoLibro extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form frmTodoUsuario
      */
-    public frmTodoUsuario() {
+    public frmTodoLibro() {
         initComponents();
-        this.setTitle("Usuarios");
-        mostrar("");
+        this.setTitle("Libro");
     }
 
     /**
@@ -35,14 +32,13 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablalistado = new javax.swing.JTable();
+        Tablalibro = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
-        tablalistado.setModel(new javax.swing.table.DefaultTableModel(
+        Tablalibro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,11 +49,11 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablalistado);
+        jScrollPane1.setViewportView(Tablalibro);
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jButton1.setText("Agregar Usuario");
+        jButton1.setText("Agregar Libro");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -78,78 +74,49 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 0, 0));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jButton3.setText("Buscar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(153, 153, 153)
+                .addGap(138, 138, 138)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addGap(48, 48, 48))
+                .addGap(117, 117, 117))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                .addGap(43, 43, 43)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
                     .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addGap(35, 35, 35))
+                    .addComponent(jButton2))
+                .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    //METODO PARA MOSTRAR TODO LOS USUARIO
-        void mostrar(String buscar){
-        try {
-            DefaultTableModel modelo;
-            LogUsuario func = new LogUsuario();
-            modelo=func.mostrar(buscar);
-            tablalistado.setModel(modelo);
-           // ocultar_columnas();
-            //lbltotalregistros.setText("Total de usuario: "+ Integer.toString(func.totalregistros));
-            
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(rootPane, e);
-        }
-    }
-        
-    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
           try {
             //Abriendo ventana trabajador
 
-            frm_usuario usuario = new frm_usuario();
-            FrmPrincipal.escritorio.add(usuario);
-            usuario.toFront();
+            frm_Libro Libro = new frm_Libro();
+            FrmPrincipal.escritorio.add(Libro);
+            Libro.toFront();
             Dimension desktopSize = FrmPrincipal.escritorio.getSize();
-            Dimension FrameSize = usuario.getSize();
-            usuario.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-            usuario.toFront();
-            usuario.setVisible(true);
+            Dimension FrameSize = Libro.getSize();
+            Libro.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+            Libro.toFront();
+            Libro.setVisible(true);
 
             
             this.dispose();
@@ -169,16 +136,11 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        mostrar("");
-    }//GEN-LAST:event_jButton3ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tablalibro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablalistado;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,8 +6,7 @@
 package Presentacion;
 
 import Datos.DatosDependencia;
-import Datos.DatosUsuario;
-import Logica.LogUsuario;
+import Logica.LogDependencia;
 import javax.swing.JOptionPane;
 
 /**
@@ -237,8 +236,8 @@ public class frm_Dependencia extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    LogUsuario func =new LogUsuario();
-           DatosDependencia dts=new  DatosDependencia();
+    LogDependencia func =new LogDependencia();
+    DatosDependencia dts=new  DatosDependencia();
     private void TxtDependenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDependenciaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtDependenciaActionPerformed
