@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Jenni
  */
 public class LogDependencia {
-   private Conexion mysql=new Conexion();
+   private Pool_conexion mysql=new Pool_conexion();
     private Connection cn = null;
     private String sSql="";
     public Integer totalregistros;
@@ -24,7 +24,7 @@ public class LogDependencia {
     //MEtodo para insertar
         public boolean insertar(DatosDependencia dts){
         try {
-            Connection cn=mysql.conectar();
+             cn=mysql.dataSource.getConnection();
             sSql="insert into Dependencia(idDependencia,Nombre,Dependencia,Cordinacion_de_zona,Direccion,Telefono)"+
                 "values(?,?,?,?,?,?)";
             PreparedStatement pst=cn.prepareStatement(sSql);

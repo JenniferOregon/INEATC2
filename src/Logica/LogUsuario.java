@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Jenni
  */
 public class LogUsuario {
-   private Conexion mysql=new Conexion();
+   private Pool_conexion metodospool=new Pool_conexion();
     private Connection cn = null;
     private String sSql="";
     public Integer totalregistros;
@@ -35,7 +35,7 @@ public class LogUsuario {
         //Haciendo la tabla no editable
     public boolean isCellEditable(int row, int column) {return false;}};
     try {
-         cn = mysql.dataSource.getConnection();
+         cn = metodospool.dataSource.getConnection();
          sSql="select * from USUARIO where nombre like'%"+buscar+"%' order by nombre";
          Statement st = cn.createStatement();
          ResultSet rs=st.executeQuery(sSql);
@@ -56,7 +56,7 @@ public class LogUsuario {
          st.close();
          return modelo;
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, "Su error al mostrar usuario: "+e.getLocalizedMessage()+"   "+e.getMessage()+e.toString());
+            JOptionPane.showConfirmDialog(null, "Su error al mostrar usuario: "+e);
             return null;
         }finally{
         try {
@@ -71,10 +71,10 @@ public class LogUsuario {
         }
     }
     
-    //MEtodo para insertar
+     //MEtodo para insertar
         public boolean insertar(DatosUsuario dts){
         try {
-            Connection cn=mysql.conectar();
+            cn = metodospool.dataSource.getConnection();
             sSql="insert into usuario(Nombre,Apellido,Telefono,Correo,nick, Contrasena,Rol)"+
                 "values(?,?,?,?,?,?,?)";
             PreparedStatement pst=cn.prepareStatement(sSql);
@@ -107,4 +107,77 @@ public class LogUsuario {
         }
         }
     }
+        
+          //----------------------------------   
+   //----EDITAR USUARIO-----------------
+   //----------------------------------
+   public boolean editar(DatosUsuario dts){
+        try {
+            cn = metodospool.dataSource.getConnection();
+            sSql="update usuario set  nombre=?, apellido=?, telefono=?,correo=?,nick=?,contrasena=?,rol=? "+
+                   "where idusuario=?";
+            PreparedStatement pst=cn.prepareStatement(sSql);
+            pst.setString(1, dts.getNombre());
+            pst.setString(2, dts.getApellido());
+            pst.setString(3, dts.getTelefono());
+            pst.setString(4, dts.getCorreo());
+            pst.setString(5, dts.getNick());
+            pst.setString(6, dts.getContrasena());
+            pst.setString(7, dts.getRol());
+            pst.setInt(8, dts.getIdusuario());
+           
+            int n=pst.executeUpdate();
+            pst.close();
+            if(n!=0){
+                return true;
+            }
+            else{
+                return false;
+            } 
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return false;
+        }finally{
+        try {
+            cn.close();
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex, "Error de desconexión pool", JOptionPane.ERROR_MESSAGE);
+
+        }
+        }
+    }
+   
+    //----------------------------------   
+   //----ELIMINAR USUARIO-----------------
+   //----------------------------------
+    public boolean eliminar(DatosUsuario dts){
+        try {
+            cn = metodospool.dataSource.getConnection();
+            sSql="delete from usuario where idusuario=?";
+            PreparedStatement pst=cn.prepareStatement(sSql);
+            pst.setInt(1,dts.getIdusuario());
+            int n=pst.executeUpdate();
+            pst.close();
+            if(n!=0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+             return false;
+        }finally{
+        try {
+            cn.close();
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex, "Error de desconexión pool", JOptionPane.ERROR_MESSAGE);
+
+        }
+        }
+    }       
 }

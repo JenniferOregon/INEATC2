@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Jenni
  */
 public class LogLibro {
-   private Conexion mysql=new Conexion();
+   private Pool_conexion metodospool=new Pool_conexion();
     private Connection cn = null;
     private String sSql="";
     public Integer totalregistros;
@@ -36,7 +36,7 @@ public class LogLibro {
         //Haciendo la tabla no editable
     public boolean isCellEditable(int row, int column) {return false;}};
     try {
-         cn = mysql.dataSource.getConnection();
+         cn = metodospool.dataSource.getConnection();
          sSql="select * from USUARIO where nombre like'%"+buscar+"%' order by nombre";
          Statement st = cn.createStatement();
          ResultSet rs=st.executeQuery(sSql);
@@ -71,7 +71,7 @@ public class LogLibro {
     
         public boolean insertar(DatosLibro dts){
         try {
-            Connection cn=mysql.conectar();
+             cn=metodospool.dataSource.getConnection();
             sSql="insert into Libro(Clave,Nombre,Unidades)"+
                 "values(?,?,?)";
             PreparedStatement pst=cn.prepareStatement(sSql);

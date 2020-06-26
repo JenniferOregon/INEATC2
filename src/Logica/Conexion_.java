@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import javax.swing.JOptionPane;
 import org.apache.commons.dbcp.BasicDataSource;
 
-public class Conexion {
+public class Conexion_ {
 
         public DataSource dataSource;
         public String db = "ineatc";
@@ -20,7 +20,7 @@ public class Conexion {
         public String user = "root";
         public String pass = "";
 
-    public Conexion() {
+    public Conexion_() {
     }
      
      public Connection conectar(){

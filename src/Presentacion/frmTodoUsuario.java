@@ -35,14 +35,14 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablalistado = new javax.swing.JTable();
+        tablausuarios = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
-        tablalistado.setModel(new javax.swing.table.DefaultTableModel(
+        tablausuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,7 +53,12 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablalistado);
+        tablausuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablausuariosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablausuarios);
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -127,7 +132,7 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
             DefaultTableModel modelo;
             LogUsuario func = new LogUsuario();
             modelo=func.mostrar(buscar);
-            tablalistado.setModel(modelo);
+            tablausuarios.setModel(modelo);
            // ocultar_columnas();
             //lbltotalregistros.setText("Total de usuario: "+ Integer.toString(func.totalregistros));
             
@@ -150,8 +155,12 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
             usuario.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
             usuario.toFront();
             usuario.setVisible(true);
-
-            
+            //Enviando la accion que se requerira segun la funcion
+       frm_usuario.lblAccion.setText("guardar");
+       frm_usuario.btnaccion.setLabel("Guardar");    
+       frm_usuario.TxtidUsuario.setVisible(false);
+            frm_usuario.lblusuario.setVisible(false);
+            frm_usuario.btneliminar.setVisible(false);
             this.dispose();
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null,"Error: " + e.toString());
@@ -173,12 +182,43 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
         mostrar("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void tablausuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablausuariosMouseClicked
+        try {
+            int fila= tablausuarios.rowAtPoint(evt.getPoint());
+            frm_usuario ventana = new frm_usuario();
+        FrmPrincipal.escritorio.add(ventana);
+        ventana.toFront();
+        Dimension desktopSize = FrmPrincipal.escritorio.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana.toFront();
+        ventana.setVisible(true);  
+        
+        //Enviando la accion que se requerira segun la funcion
+       frm_usuario.lblAccion.setText("editar");
+       frm_usuario.btnaccion.setLabel("Editar");
+       frm_usuario.TxtidUsuario.setEnabled(false);
+      
+      //Asignando datos a elementos ventana trabajador
+       frm_usuario.TxtidUsuario.setText(tablausuarios.getValueAt(fila, 0).toString());
+              frm_usuario.TxtNombreUsuario.setText(tablausuarios.getValueAt(fila, 1).toString());
+frm_usuario.TxtApellido.setText(tablausuarios.getValueAt(fila, 2).toString());
+frm_usuario.TxtTelefono.setText(tablausuarios.getValueAt(fila, 3).toString());
+frm_usuario.TxtCorreo.setText(tablausuarios.getValueAt(fila, 4).toString());
+frm_usuario.TxtNick.setText(tablausuarios.getValueAt(fila, 5).toString());
+frm_usuario.TxtContrasena.setText(tablausuarios.getValueAt(fila, 6).toString());
+frm_usuario.TxtRol.setText(tablausuarios.getValueAt(fila, 7).toString());
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_tablausuariosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablalistado;
+    private javax.swing.JTable tablausuarios;
     // End of variables declaration//GEN-END:variables
 }
