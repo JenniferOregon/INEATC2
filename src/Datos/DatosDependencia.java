@@ -13,15 +13,15 @@ package Datos;
 public class DatosDependencia {
     private int idDependencia;
     private String Nombre;
-    private String Dependencia;
+    private String Departamento;
     private String Cordinacion_de_zona;
     private String Direccion;
     private String Telefono;
     
-    public DatosDependencia(int idDependencia,String Nombre,String Dependencia,String Cordinacion_de_zona,String Direccion,String Telefono){
+    public DatosDependencia(int idDependencia,String Nombre,String Departamento,String Cordinacion_de_zona,String Direccion,String Telefono){
     this.idDependencia=idDependencia;
     this.Nombre=Nombre;
-    this.Dependencia=Dependencia;
+    this.Departamento=Departamento;
     this.Cordinacion_de_zona=Cordinacion_de_zona;
     this.Direccion=Direccion;
     this.Telefono=Telefono;
@@ -45,13 +45,15 @@ public class DatosDependencia {
         this.Nombre = Nombre;
     }
 
-    public String getDependencia() {
-        return Dependencia;
+    public String getDepartamento() {
+        return Departamento;
     }
 
-    public void setDependencia(String Dependencia) {
-        this.Dependencia = Dependencia;
+    public void setDepartamento(String Departamento) {
+        this.Departamento = Departamento;
     }
+
+   
 
     public String getCordinacion_de_zona() {
         return Cordinacion_de_zona;

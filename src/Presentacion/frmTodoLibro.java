@@ -5,8 +5,10 @@
  */
 package Presentacion;
 
+import Logica.LogLibro;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +22,7 @@ public class frmTodoLibro extends javax.swing.JInternalFrame {
     public frmTodoLibro() {
         initComponents();
         this.setTitle("Libro");
+        mostrar("");
     }
 
     /**
@@ -35,6 +38,7 @@ public class frmTodoLibro extends javax.swing.JInternalFrame {
         Tablalibro = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
@@ -49,6 +53,11 @@ public class frmTodoLibro extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        Tablalibro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablalibroMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tablalibro);
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
@@ -74,36 +83,62 @@ public class frmTodoLibro extends javax.swing.JInternalFrame {
             }
         });
 
+        btnBuscar.setBackground(new java.awt.Color(255, 0, 0));
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(117, 117, 117))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(jButton1)
+                .addGap(89, 89, 89)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscar)
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(btnBuscar))
                 .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+       void mostrar(String buscar){
+        try {
+            DefaultTableModel modelo;
+            LogLibro func = new LogLibro();
+            modelo=func.mostrar(buscar);
+            Tablalibro.setModel(modelo);
+           // ocultar_columnas();
+            //lbltotalregistros.setText("Total de usuario: "+ Integer.toString(func.totalregistros));
+            
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(rootPane, e);
+        }
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
           try {
@@ -117,7 +152,7 @@ public class frmTodoLibro extends javax.swing.JInternalFrame {
             Libro.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
             Libro.toFront();
             Libro.setVisible(true);
-
+                Libro.lblaccion.setText("guardar");
             
             this.dispose();
         } catch (Exception e) {
@@ -136,9 +171,41 @@ public class frmTodoLibro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void TablalibroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablalibroMouseClicked
+        try {
+            int fila= Tablalibro.rowAtPoint(evt.getPoint());
+            frm_Libro ventana = new frm_Libro();
+        FrmPrincipal.escritorio.add(ventana);
+        ventana.toFront();
+        Dimension desktopSize = FrmPrincipal.escritorio.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana.toFront();
+        ventana.setVisible(true);  
+        
+        //Enviando la accion que se requerira segun la funcion
+       frm_Libro.lblaccion.setText("editar");
+       frm_Libro.btnaccion.setLabel("Editar");
+       frm_Libro.TxtClave.setEnabled(false);
+             
+      //Asignando datos a elementos ventana trabajador
+       frm_Libro.TxtClave.setText(Tablalibro.getValueAt(fila, 0).toString());
+        frm_Libro.TxtNombre.setText(Tablalibro.getValueAt(fila, 1).toString());
+        frm_Libro.TxtUnidades.setText(Tablalibro.getValueAt(fila, 2).toString());
+
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_TablalibroMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+          mostrar("");
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Tablalibro;
+    public static javax.swing.JTable Tablalibro;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;

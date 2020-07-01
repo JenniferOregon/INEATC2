@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package Presentacion;
-
+        
+import Logica.LogDependencia;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
-
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author jenni
@@ -18,8 +19,11 @@ public class frmTodoDependencia extends javax.swing.JInternalFrame {
      * Creates new form frmTodoUsuario
      */
     public frmTodoDependencia() {
+        
         initComponents();
-        this.setTitle("Usuarios");
+        this.setTitle("Dependecia");
+        mostrar("");
+                
     }
 
     /**
@@ -32,13 +36,14 @@ public class frmTodoDependencia extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaUsuarios = new javax.swing.JTable();
+        TablaDependencia = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
-        TablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        TablaDependencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -49,7 +54,12 @@ public class frmTodoDependencia extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(TablaUsuarios);
+        TablaDependencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaDependenciaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablaDependencia);
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -74,51 +84,83 @@ public class frmTodoDependencia extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(255, 0, 0));
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jButton3.setText("Buscar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(131, 131, 131))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jButton1)
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton2)
+                        .addGap(92, 92, 92)
+                        .addComponent(jButton3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
                 .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+         void mostrar(String buscar){
+              try {
+            DefaultTableModel modelo;
+            LogDependencia func = new LogDependencia();
+            modelo=func.mostrar(buscar);
+            TablaDependencia.setModel(modelo);
+           // ocultar_columnas();
+            //lbltotalregistros.setText("Total de usuario: "+ Integer.toString(func.totalregistros));
+            
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(rootPane, e);
+        }
+      
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
           try {
             //Abriendo ventana trabajador
 
-            frm_usuario usuario = new frm_usuario();
-            FrmPrincipal.escritorio.add(usuario);
-            usuario.toFront();
+            frm_Dependencia dependencia = new frm_Dependencia();
+            FrmPrincipal.escritorio.add(dependencia);
+            dependencia.toFront();
             Dimension desktopSize = FrmPrincipal.escritorio.getSize();
-            Dimension FrameSize = usuario.getSize();
-            usuario.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-            usuario.toFront();
-            usuario.setVisible(true);
-
-            
+            Dimension FrameSize = dependencia.getSize();
+            dependencia.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+            dependencia.toFront();
+            dependencia.setVisible(true);
+//Enviando la accion que se requerira segun la funcion
+       frm_Dependencia.lblAccion.setText("guardar");
+       frm_Dependencia.btnaccion.setLabel("Guardar");    
+       frm_Dependencia.TxtidDependencia.setVisible(false);
+            frm_Dependencia.lblidDependencia.setVisible(false);
+            frm_Dependencia.btneliminar.setVisible(false);
+            this.dispose();            
             this.dispose();
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null,"Error: " + e.toString());
@@ -136,11 +178,48 @@ public class frmTodoDependencia extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         mostrar("");
+    }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void TablaDependenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDependenciaMouseClicked
+        try {
+            int fila= TablaDependencia.rowAtPoint(evt.getPoint());
+            frm_Dependencia ventana = new frm_Dependencia();
+        FrmPrincipal.escritorio.add(ventana);
+        ventana.toFront();
+        Dimension desktopSize = FrmPrincipal.escritorio.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana.toFront();
+        ventana.setVisible(true);  
+        
+        //Enviando la accion que se requerira segun la funcion
+       frm_Dependencia.lblAccion.setText("editar");
+       frm_Dependencia.btnaccion.setLabel("Editar");
+       frm_Dependencia.TxtidDependencia.setEnabled(false);
+            
+      //Asignando datos a elementos ventana trabajador
+       frm_Dependencia.TxtidDependencia.setText(TablaDependencia.getValueAt(fila, 0).toString());
+       frm_Dependencia.TxtNombre.setText(TablaDependencia.getValueAt(fila, 1).toString()); 
+       frm_Dependencia.TxtDependencia.setText(TablaDependencia.getValueAt(fila, 2).toString());
+       frm_Dependencia.TxtCordinacion_de_zona.setText(TablaDependencia.getValueAt(fila, 3).toString());
+       frm_Dependencia.TxtDireccion.setText(TablaDependencia.getValueAt(fila, 4).toString());
+       frm_Dependencia.TxtTelefono.setText(TablaDependencia.getValueAt(fila, 5).toString());
+      
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null,"Error "+e);
+        }
+    }//GEN-LAST:event_TablaDependenciaMouseClicked
+
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaUsuarios;
+    private javax.swing.JTable TablaDependencia;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-}
+    }                                             
+

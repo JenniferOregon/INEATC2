@@ -7,6 +7,7 @@ package Presentacion;
 
 import Datos.DatosLibro;
 import Logica.LogLibro;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -43,6 +44,8 @@ public class frm_Libro extends javax.swing.JInternalFrame {
         btnaccion = new java.awt.Button();
         jLabel1 = new javax.swing.JLabel();
         TxtClave = new javax.swing.JTextField();
+        lblaccion = new javax.swing.JLabel();
+        btneliminar = new java.awt.Button();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -98,6 +101,20 @@ public class frm_Libro extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Clave");
 
+        lblaccion.setForeground(new java.awt.Color(255, 255, 255));
+        lblaccion.setText("Accion");
+
+        btneliminar.setActionCommand("Eliminar");
+        btneliminar.setBackground(new java.awt.Color(255, 0, 0));
+        btneliminar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btneliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btneliminar.setLabel("Elimininar");
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -126,6 +143,14 @@ public class frm_Libro extends javax.swing.JInternalFrame {
                 .addGap(95, 95, 95)
                 .addComponent(btnaccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(88, 88, 88))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(148, 148, 148)
+                .addComponent(lblaccion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +179,11 @@ public class frm_Libro extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
                             .addComponent(btnaccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblaccion)
+                .addGap(43, 43, 43))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -218,28 +247,55 @@ public class frm_Libro extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane,"Error "+e);
         }
-        
+         String accion=lblaccion.getText(); 
        
-             if (funclibro.insertar(dtslibro)) {
-                   JOptionPane.showMessageDialog(rootPane, "El libro fue registrado satisfactoriamente");
+            if(accion.equals("guardar")){
+               if (funclibro.insertar(dtslibro)) {
+                   JOptionPane.showMessageDialog(rootPane, "El usuario fue registrado satisfactoriamente");
+                   this.dispose();
+               }
+           }
+           
+           if (accion.equals("editar")) {
+               
+               if (funclibro.editar(dtslibro)) {
+                   JOptionPane.showMessageDialog(rootPane, "El usuario fue editada satisfactoriamente");
+                 this.dispose();
+                   
                }
            
+           
+           }
     }//GEN-LAST:event_btnaccionActionPerformed
+
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        try {  dtslibro.setClave(TxtClave.getText());
+         if (funclibro.eliminar(dtslibro)) {
+                    JOptionPane.showMessageDialog(rootPane, "El Libro fue Eliminado satisfactoriamente");
+                 this.dispose();
+                   
+               }    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error "+e);
+        }
+    }//GEN-LAST:event_btneliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TxtClave;
-    private javax.swing.JTextField TxtNombre;
-    private javax.swing.JTextField TxtUnidades;
-    private java.awt.Button btnaccion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    public static javax.swing.JTextField TxtClave;
+    public static javax.swing.JTextField TxtNombre;
+    public static javax.swing.JTextField TxtUnidades;
+    public static java.awt.Button btnaccion;
+    public static java.awt.Button btneliminar;
+    public static javax.swing.JButton jButton1;
+    public static javax.swing.JLabel jLabel1;
+    public static javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private java.awt.Label label1;
+    public static java.awt.Label label1;
+    public static javax.swing.JLabel lblaccion;
     // End of variables declaration//GEN-END:variables
 }

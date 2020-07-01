@@ -47,8 +47,10 @@ public class frm_Dependencia extends javax.swing.JInternalFrame {
         TxtDireccion = new java.awt.TextField();
         TxtTelefono = new java.awt.TextField();
         btnaccion = new java.awt.Button();
-        jLabel1 = new javax.swing.JLabel();
+        lblidDependencia = new javax.swing.JLabel();
         TxtidDependencia = new javax.swing.JTextField();
+        lblAccion = new javax.swing.JLabel();
+        btneliminar = new java.awt.Button();
         jPanel3 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -117,52 +119,76 @@ public class frm_Dependencia extends javax.swing.JInternalFrame {
         btnaccion.setBackground(new java.awt.Color(255, 0, 0));
         btnaccion.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btnaccion.setForeground(new java.awt.Color(255, 255, 255));
-        btnaccion.setLabel("Aceptar");
+        btnaccion.setLabel("Accion");
         btnaccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnaccionActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("idDependencia");
+        lblidDependencia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblidDependencia.setForeground(new java.awt.Color(255, 255, 255));
+        lblidDependencia.setText("idDependencia");
+
+        lblAccion.setForeground(new java.awt.Color(255, 255, 255));
+        lblAccion.setText("Accion");
+
+        btneliminar.setBackground(new java.awt.Color(255, 0, 0));
+        btneliminar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btneliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btneliminar.setLabel("Eliminar");
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(118, 118, 118))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(label2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnaccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(TxtidDependencia, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TxtNombre)
-                            .addComponent(TxtDependencia)
-                            .addComponent(TxtCordinacion_de_zona)
-                            .addComponent(TxtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(172, 172, 172))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(113, 113, 113)
+                                .addComponent(jLabel3))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblidDependencia)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(label2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(jButton1)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(TxtidDependencia, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(TxtNombre)
+                                        .addComponent(TxtDependencia)
+                                        .addComponent(TxtCordinacion_de_zona)
+                                        .addComponent(TxtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(TxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(172, 172, 172))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(btnaccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblAccion)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +196,7 @@ public class frm_Dependencia extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblidDependencia)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -195,14 +221,16 @@ public class frm_Dependencia extends javax.swing.JInternalFrame {
                         .addComponent(TxtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(81, 81, 81)
+                .addGap(69, 69, 69)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addComponent(btnaccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(btnaccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(lblAccion)
+                .addGap(47, 47, 47))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -236,8 +264,8 @@ public class frm_Dependencia extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    LogDependencia func =new LogDependencia();
-    DatosDependencia dts=new  DatosDependencia();
+    LogDependencia funcDepe =new LogDependencia();
+    DatosDependencia dtsDepe=new  DatosDependencia();
     private void TxtDependenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDependenciaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtDependenciaActionPerformed
@@ -247,7 +275,7 @@ public class frm_Dependencia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TxtCordinacion_de_zonaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
+        this.dispose(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TxtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDireccionActionPerformed
@@ -256,39 +284,73 @@ public class frm_Dependencia extends javax.swing.JInternalFrame {
 
     private void btnaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaccionActionPerformed
         try {
-            
-         
-         
+           dtsDepe.setNombre(TxtNombre.getText());
+           dtsDepe.setDepartamento(TxtDependencia.getText());
+           dtsDepe.setCordinacion_de_zona(TxtCordinacion_de_zona.getText());
+           dtsDepe.setDireccion(TxtDireccion.getText());
+           dtsDepe.setTelefono(TxtTelefono.getText());
+      
                
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane,"Error "+e);
-        }
-        
-     
+        }  
+         //Evaluando la accion a realizar
+       String accion=lblAccion.getText(); 
+       
+            if(accion.equals("guardar")){
+               if (funcDepe.insertar(dtsDepe)) {
+                   JOptionPane.showMessageDialog(rootPane, "El dependencia fue registrado satisfactoriamente");
+                   this.dispose();
+               }
+           }
+           
+           if (accion.equals("editar")) {
+                dtsDepe.setIdDependencia(Integer.parseInt(TxtidDependencia.getText()));
+               if (funcDepe.editar(dtsDepe)) {
+                   JOptionPane.showMessageDialog(rootPane, "El dependencia fue editada satisfactoriamente");
+                 this.dispose();
+                   
+               }
            
            
+           }
           
     }//GEN-LAST:event_btnaccionActionPerformed
 
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+         try {  dtsDepe.setIdDependencia(Integer.parseInt(TxtidDependencia.getText()));
+         if (funcDepe.eliminar(dtsDepe)) {
+                    JOptionPane.showMessageDialog(rootPane, "El dependencia fue Eliminado satisfactoriamente");
+                 this.dispose();
+                   
+               }    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error "+e);
+        }
+
+    }//GEN-LAST:event_btneliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TxtCordinacion_de_zona;
-    private javax.swing.JTextField TxtDependencia;
-    private java.awt.TextField TxtDireccion;
-    private javax.swing.JTextField TxtNombre;
-    private java.awt.TextField TxtTelefono;
-    private javax.swing.JTextField TxtidDependencia;
-    private java.awt.Button btnaccion;
+    public static javax.swing.JTextField TxtCordinacion_de_zona;
+    public static javax.swing.JTextField TxtDependencia;
+    public static java.awt.TextField TxtDireccion;
+    public static javax.swing.JTextField TxtNombre;
+    public static java.awt.TextField TxtTelefono;
+    public static javax.swing.JTextField TxtidDependencia;
+    public static java.awt.Button btnaccion;
+    public static java.awt.Button btneliminar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public static javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label4;
+    public static javax.swing.JLabel lblAccion;
+    public static javax.swing.JLabel lblidDependencia;
     // End of variables declaration//GEN-END:variables
 }

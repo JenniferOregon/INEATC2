@@ -37,7 +37,7 @@ public class LogLibro {
     public boolean isCellEditable(int row, int column) {return false;}};
     try {
          cn = metodospool.dataSource.getConnection();
-         sSql="select * from USUARIO where nombre like'%"+buscar+"%' order by nombre";
+         sSql="select * from LIBRO where nombre like'%"+buscar+"%' order by Clave";
          Statement st = cn.createStatement();
          ResultSet rs=st.executeQuery(sSql);
          while(rs.next()){
@@ -99,4 +99,69 @@ public class LogLibro {
         }
         }
     }
+        
+         public boolean editar(DatosLibro dts){
+        try {
+            cn = metodospool.dataSource.getConnection();
+            sSql="update LIBRO set  nombre=?, unidades=? "+
+                   "where Clave=?";
+            PreparedStatement pst=cn.prepareStatement(sSql);
+            pst.setString(3, dts.getClave());
+            pst.setString(1, dts.getNombre());
+            pst.setInt(2, dts.getUnidades());
+           
+            int n=pst.executeUpdate();
+            pst.close();
+            if(n!=0){
+                return true;
+            }
+            else{
+                return false;
+            } 
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return false;
+        }finally{
+        try {
+            cn.close();
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex, "Error de desconexión pool", JOptionPane.ERROR_MESSAGE);
+
+        }
+        }
+    }
+         
+        
+      public boolean eliminar(DatosLibro dts){
+        try {
+            cn = metodospool.dataSource.getConnection();
+            sSql="delete from libro where Clave=?";
+            PreparedStatement pst=cn.prepareStatement(sSql);
+            pst.setString(1,dts.getClave());
+            int n=pst.executeUpdate();
+            pst.close();
+            if(n!=0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+             return false;
+        }finally{
+        try {
+            cn.close();
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex, "Error de desconexión pool", JOptionPane.ERROR_MESSAGE);
+
+        }
+        }
+    }       
+        
+        
 }
