@@ -10,90 +10,51 @@ package Datos;
  * @author Jenni
  */
 public class DatosDetalleEntrada {
-    private int idusuario;
-    private  String Nombre;
-    private String Apellido;
-    private String Telefono;
-    private String Correo;
-    private String nick;
-    private String Contrasena;
-    private String Rol;
+    private int idDetalle_Entrada;
+    private  String idLibro;
+    private int Cantidad;
+    private int idEntrada;
+   
     
-    public DatosDetalleEntrada(int idusuario, String Nombre,String Apellido,String Telefono,String Correo,String nick,String Contrasena,String Rol){
-    this.idusuario=idusuario;
-    this.Nombre=Nombre;
-    this.Apellido=Apellido;
-    this.Telefono=Telefono;
-    this.Correo=Correo;
-    this.nick=nick;
-    this.Contrasena=Contrasena;
-    this.Rol=Rol;
+    public DatosDetalleEntrada(int idDetalle_Entrada, String idLibro,int Cantidad,int idEntrada ){
+    this.idDetalle_Entrada=idDetalle_Entrada;
+    this.idLibro=idLibro;
+    this.Cantidad=Cantidad;
+    this.idEntrada=idEntrada;
     }
     
     public DatosDetalleEntrada(){}
 
-    public int getIdusuario() {
-        return idusuario;
+    public int getIdDetalle_Entrada() {
+        return idDetalle_Entrada;
     }
 
-    public void setIdusuario(int idusuario) {
-        this.idusuario = idusuario;
+    public void setIdDetalle_Entrada(int idDetalle_Entrada) {
+        this.idDetalle_Entrada = idDetalle_Entrada;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getIdLibro() {
+        return idLibro;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setIdLibro(String idLibro) {
+        this.idLibro = idLibro;
     }
 
-    public String getApellido() {
-        return Apellido;
+    public int getCantidad() {
+        return Cantidad;
     }
 
-    public void setApellido(String Apellido) {
-        this.Apellido = Apellido;
+    public void setCantidad(int Cantidad) {
+        this.Cantidad = Cantidad;
     }
 
-    public String getTelefono() {
-        return Telefono;
+    public int getIdEntrada() {
+        return idEntrada;
     }
 
-    public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
-    }
-
-    public String getCorreo() {
-        return Correo;
-    }
-
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
-    }
-
-    public String getNick() {
-        return nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
-    public String getContrasena() {
-        return Contrasena;
-    }
-
-    public void setContrasena(String Contrasena) {
-        this.Contrasena = Contrasena;
-    }
-
-    public String getRol() {
-        return Rol;
-    }
-
-    public void setRol(String Rol) {
-        this.Rol = Rol;
+    public void setIdEntrada(int idEntrada) {
+        this.idEntrada = idEntrada;
     }
 
     

@@ -5,7 +5,7 @@
  */
 package Logica;
 
-import Datos.DatosLibro;
+import Datos.DatosEntrada;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jenni
  */
-public class LogLibro {
+public class LogEntrada {
    private Pool_conexion metodospool=new Pool_conexion();
     private Connection cn = null;
     private String sSql="";
@@ -27,8 +27,8 @@ public class LogLibro {
        public DefaultTableModel mostrar(String buscar) throws SQLException{
     DefaultTableModel modelo;
     
-    String [] titulos = {"Clave","Nombre","Unidades"};
-    String [] registro = new String [3];
+    String [] titulos = {"idEntrada","Fecha","Hora","idUsuario"};
+    String [] registro = new String [4];
     
     totalregistros=0;
     modelo= new DefaultTableModel(null,titulos){
@@ -36,13 +36,14 @@ public class LogLibro {
     public boolean isCellEditable(int row, int column) {return false;}};
     try {
          cn = metodospool.dataSource.getConnection();
-         sSql="select * from LIBRO where nombre like'%"+buscar+"%' order by Clave";
+         sSql="select * from Entrada where idEntrada like'%"+buscar+"%' order by idEntrada";
          Statement st = cn.createStatement();
          ResultSet rs=st.executeQuery(sSql);
          while(rs.next()){
-            registro [0]=rs.getString("Clave");
-            registro [1]=rs.getString("Nombre");
-            registro [2]=rs.getString("Unidades"); 
+            registro [0]=rs.getString("idEntrada");
+            registro [1]=rs.getString("Fecha");
+            registro [2]=rs.getString("Hora");
+            registro [3]=rs.getString("idUsuario"); 
             totalregistros=totalregistros+1;
             modelo.addRow(registro);
            
@@ -51,7 +52,7 @@ public class LogLibro {
          st.close();
          return modelo;
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, "Su error al mostrar usuario: "+e);
+            JOptionPane.showConfirmDialog(null, "Su error al mostrar Entrada: "+e);
             return null;
         }finally{
         try {
@@ -65,53 +66,19 @@ public class LogLibro {
         }
         }
        }
-       
-       
-       public String[] mostrarselectivo(String buscar) { 
-    
-    String [] registro = new String [3];
-    
-    totalregistros=0;
-      try {
-         cn = metodospool.dataSource.getConnection();
-         sSql="select * from LIBRO where clave='"+buscar+"'";
-         Statement st = cn.createStatement();
-         ResultSet rs=st.executeQuery(sSql);
-         while(rs.next()){
-            registro [0]=rs.getString("Clave");
-            registro [1]=rs.getString("Nombre");
-            registro [2]=rs.getString("Unidades"); 
-            totalregistros=totalregistros+1;
-           
-         }
-         return registro;
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, "Su error al mostrar usuario: "+e);
-            return null;
-        }finally{
-        try {
-       
-            cn.close();
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, ex, "Error de desconexión pool", JOptionPane.ERROR_MESSAGE);
-
-        }
-       }
-       }
     //MEtodo para insertar
     
     
-        public boolean insertar(DatosLibro dts){
+        public boolean insertar(DatosEntrada dts){
         try {
              cn=metodospool.dataSource.getConnection();
-            sSql="insert into Libro(Clave,Nombre,Unidades)"+
-                "values(?,?,?)";
+            sSql="insert into Entrada(idEntrada,Fecha,Hora,idUsuario)"+
+                "values(?,?,?,?)";
             PreparedStatement pst=cn.prepareStatement(sSql);
-             pst.setString(1, dts.getClave());
-             pst.setString(2, dts.getNombre());
-             pst.setInt(3,dts.getUnidades());
+             pst.setInt(1, dts.getIdEntrada());
+             pst.setString(2, dts.getFecha());
+             pst.setString(3,dts.getHora());
+             pst.setInt(4,dts.getIdusuario());
             int n=pst.executeUpdate();
             if(n!=0){
                 return true;
@@ -134,15 +101,16 @@ public class LogLibro {
         }
     }
         
-         public boolean editar(DatosLibro dts){
+         public boolean editar(DatosEntrada dts){
         try {
             cn = metodospool.dataSource.getConnection();
-            sSql="update LIBRO set  nombre=?, unidades=? "+
-                   "where Clave=?";
+            sSql="update Entrada set  Fecha=?, Hora=?,idUsuario=? "+
+                   "where idEntrada=?";
             PreparedStatement pst=cn.prepareStatement(sSql);
-            pst.setString(3, dts.getClave());
-            pst.setString(1, dts.getNombre());
-            pst.setInt(2, dts.getUnidades());
+            pst.setInt(4, dts.getIdEntrada());
+            pst.setString(1, dts.getFecha());
+            pst.setString(2, dts.getHora());
+            pst.setInt(3, dts.getIdusuario());
            
             int n=pst.executeUpdate();
             pst.close();
@@ -168,12 +136,12 @@ public class LogLibro {
     }
          
         
-      public boolean eliminar(DatosLibro dts){
+      public boolean eliminar(DatosEntrada dts){
         try {
             cn = metodospool.dataSource.getConnection();
-            sSql="delete from libro where Clave=?";
+            sSql="delete from Entrada where idEntrada=?";
             PreparedStatement pst=cn.prepareStatement(sSql);
-            pst.setString(1,dts.getClave());
+            pst.setInt(1,dts.getIdEntrada());
             int n=pst.executeUpdate();
             pst.close();
             if(n!=0){

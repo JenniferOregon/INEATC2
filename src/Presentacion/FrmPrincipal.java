@@ -33,12 +33,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
+        lbldependencia1 = new javax.swing.JLabel();
         jp_menu = new javax.swing.JPanel();
         lblusuarios = new javax.swing.JLabel();
         lbllibros = new javax.swing.JLabel();
         lblasesor = new javax.swing.JLabel();
         lbldependencia = new javax.swing.JLabel();
+        lblentrada = new javax.swing.JLabel();
+        lbldetalleentrada = new javax.swing.JLabel();
         escritorio = new javax.swing.JDesktopPane();
+        Lblbiendenido = new javax.swing.JLabel();
+        LblNombre = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -50,6 +55,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
+
+        lbldependencia1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbldependencia1.setForeground(new java.awt.Color(255, 255, 255));
+        lbldependencia1.setText("Dependencia");
+        lbldependencia1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbldependencia1MouseClicked(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +106,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblentrada.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblentrada.setForeground(new java.awt.Color(255, 255, 255));
+        lblentrada.setText("Entrada");
+        lblentrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblentradaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblentradaMouseEntered(evt);
+            }
+        });
+
+        lbldetalleentrada.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbldetalleentrada.setForeground(new java.awt.Color(255, 255, 255));
+        lbldetalleentrada.setText("Detalle Entrada");
+        lbldetalleentrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbldetalleentradaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jp_menuLayout = new javax.swing.GroupLayout(jp_menu);
         jp_menu.setLayout(jp_menuLayout);
         jp_menuLayout.setHorizontalGroup(
@@ -99,11 +134,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(jp_menuLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jp_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbldetalleentrada)
+                    .addComponent(lblentrada)
                     .addComponent(lbldependencia)
                     .addComponent(lblasesor)
                     .addComponent(lbllibros)
                     .addComponent(lblusuarios))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jp_menuLayout.setVerticalGroup(
             jp_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,22 +151,50 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(lbllibros)
                 .addGap(18, 18, 18)
                 .addComponent(lblasesor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(lbldependencia)
-                .addContainerGap(507, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addComponent(lblentrada)
+                .addGap(18, 18, 18)
+                .addComponent(lbldetalleentrada)
+                .addContainerGap(421, Short.MAX_VALUE))
         );
 
         escritorio.setBackground(new java.awt.Color(51, 51, 51));
+
+        Lblbiendenido.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Lblbiendenido.setForeground(new java.awt.Color(255, 255, 255));
+        Lblbiendenido.setText("BIENBENIDO");
+
+        LblNombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        LblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        LblNombre.setText("NOMBRE");
+
+        escritorio.setLayer(Lblbiendenido, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(LblNombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 678, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(Lblbiendenido))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(275, 275, 275)
+                        .addComponent(LblNombre)))
+                .addContainerGap(278, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(Lblbiendenido)
+                .addGap(55, 55, 55)
+                .addComponent(LblNombre)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,6 +222,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
      frmTodoLibro frmtodolibro = new frmTodoLibro();
      frmTodoAsesor frmtodoasesor = new frmTodoAsesor();
      frmTodoDependencia frmtododependencia = new frmTodoDependencia();
+     frmTodoEntrada frmtodoentrada = new frmTodoEntrada();
+     frmTodoDetalleEntrada frmtododetalleentrada= new frmTodoDetalleEntrada();
+     frm_RegistroEntrada frmregistroentrada=new  frm_RegistroEntrada();
+     //DEclarar variables publicas
+    public int  idUsuario;
+    public String NombreUsuario;
+    public String apellidoUsuario;
+    public String telefono;
+    public String correo;
+    public String nick;
+    public String contrasena;
+    public String Rol;
+    
     
     private void lblusuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblusuariosMouseClicked
        try {
@@ -266,6 +344,73 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lbldependenciaMouseClicked
 
+    private void lbldependencia1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldependencia1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbldependencia1MouseClicked
+
+    private void lblentradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblentradaMouseClicked
+        // TODO add your handling code here:
+        try {
+        boolean mostrar=true;
+        String Nombre=frmregistroentrada.getTitle();
+        for (int a=0;a<escritorio.getComponentCount();a++){     // verificar si es instancia de algun componente que ya este en el jdesktoppane
+        if( frmregistroentrada.getClass().isInstance( escritorio.getComponent(a) )){
+        // JOptionPane.showMessageDialog(rootPane, "La ventana "+Nombre+" que interta abrir ya está abierta, cierre la ventana actual e intente nuevamente");
+        System.out.println("esta instancia, no se debe mostrar");
+        frmregistroentrada.toFront();
+        escritorio.moveToFront(frmregistroentrada);
+        mostrar=false;
+     }else{
+        System.out.println("no lo es, puede mostrarse");
+    }
+}
+        if(mostrar){
+        Dimension desktopSize = escritorio.getSize();
+        frmregistroentrada.setSize(escritorio.getSize());
+        escritorio.add(frmregistroentrada);
+         frmregistroentrada.TxtNombreusuario.setText(NombreUsuario+" "+apellidoUsuario);
+         frmregistroentrada.TxtidUsuario.setText(idUsuario+"");
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)frmregistroentrada.getUI()).setNorthPane(null);//Con esto quito el title
+        }
+         frmregistroentrada.show();
+        } catch (Exception e) {
+          JOptionPane.showConfirmDialog(null,"Error: " + e);
+        }
+
+    }//GEN-LAST:event_lblentradaMouseClicked
+
+    private void lbldetalleentradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldetalleentradaMouseClicked
+        // TODO add your handling code here:
+         try {
+        boolean mostrar=true;
+        String Nombre=frmtododetalleentrada.getTitle();
+        for (int a=0;a<escritorio.getComponentCount();a++){     // verificar si es instancia de algun componente que ya este en el jdesktoppane
+        if( frmtododetalleentrada.getClass().isInstance( escritorio.getComponent(a) )){
+        // JOptionPane.showMessageDialog(rootPane, "La ventana "+Nombre+" que interta abrir ya está abierta, cierre la ventana actual e intente nuevamente");
+        System.out.println("esta instancia, no se debe mostrar");
+        frmtododetalleentrada.toFront();
+        escritorio.moveToFront(frmtododetalleentrada);
+        mostrar=false;
+     }else{
+        System.out.println("no lo es, puede mostrarse");
+    }
+}
+        if(mostrar){
+        Dimension desktopSize = escritorio.getSize();
+        frmtododetalleentrada.setSize(escritorio.getSize());
+        escritorio.add(frmtododetalleentrada);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)frmtododetalleentrada.getUI()).setNorthPane(null);//Con esto quito el title
+        }
+         frmtododetalleentrada.show();
+        } catch (Exception e) {
+          JOptionPane.showConfirmDialog(null,"Error: " + e);
+        }
+    }//GEN-LAST:event_lbldetalleentradaMouseClicked
+
+    private void lblentradaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblentradaMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblentradaMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -302,11 +447,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JLabel LblNombre;
+    private javax.swing.JLabel Lblbiendenido;
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JLabel lblasesor;
     private javax.swing.JLabel lbldependencia;
+    private javax.swing.JLabel lbldependencia1;
+    private javax.swing.JLabel lbldetalleentrada;
+    private javax.swing.JLabel lblentrada;
     private javax.swing.JLabel lbllibros;
     private javax.swing.JLabel lblusuarios;
     // End of variables declaration//GEN-END:variables

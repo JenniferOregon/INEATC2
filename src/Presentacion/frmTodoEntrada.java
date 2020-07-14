@@ -5,7 +5,8 @@
  */
 package Presentacion;
 
-import Logica.LogUsuario;
+import Logica.LogEntrada;
+import Logica.LogLibro;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -14,14 +15,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jenni
  */
-public class frmTodoUsuario extends javax.swing.JInternalFrame {
+public class frmTodoEntrada extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form frmTodoUsuario
      */
-    public frmTodoUsuario() {
+    public frmTodoEntrada() {
         initComponents();
-        this.setTitle("Usuarios");
+        this.setTitle("Libro");
         mostrar("");
     }
 
@@ -35,14 +36,14 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablausuarios = new javax.swing.JTable();
+        Tablaentrada = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
-        tablausuarios.setModel(new javax.swing.table.DefaultTableModel(
+        Tablaentrada.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,16 +54,16 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablausuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+        Tablaentrada.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablausuariosMouseClicked(evt);
+                TablaentradaMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tablausuarios);
+        jScrollPane1.setViewportView(Tablaentrada);
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jButton1.setText("Agregar Usuario");
+        jButton1.setText("Agregar Entrada");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -83,12 +84,12 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 0, 0));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jButton3.setText("Buscar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(255, 0, 0));
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -97,42 +98,40 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jButton1)
-                .addGap(88, 88, 88)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(74, 74, 74))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jButton1)
+                .addGap(64, 64, 64)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscar)
+                .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
                     .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addGap(35, 35, 35))
+                    .addComponent(jButton2)
+                    .addComponent(btnBuscar))
+                .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    //METODO PARA MOSTRAR TODO LOS USUARIO
-        void mostrar(String buscar){
+       void mostrar(String buscar){
         try {
             DefaultTableModel modelo;
-            LogUsuario func = new LogUsuario();
+            LogEntrada func = new LogEntrada();
             modelo=func.mostrar(buscar);
-            tablausuarios.setModel(modelo);
+            Tablaentrada.setModel(modelo);
            // ocultar_columnas();
             //lbltotalregistros.setText("Total de usuario: "+ Integer.toString(func.totalregistros));
             
@@ -140,27 +139,22 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
     }
-        
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
           try {
             //Abriendo ventana trabajador
 
-            frm_usuario usuario = new frm_usuario();
-            FrmPrincipal.escritorio.add(usuario);
-            usuario.toFront();
+            frm_Entrada Entrada = new frm_Entrada();
+            FrmPrincipal.escritorio.add(Entrada);
+            Entrada.toFront();
             Dimension desktopSize = FrmPrincipal.escritorio.getSize();
-            Dimension FrameSize = usuario.getSize();
-            usuario.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-            usuario.toFront();
-            usuario.setVisible(true);
-            //Enviando la accion que se requerira segun la funcion
-       frm_usuario.lblAccion.setText("guardar");
-       frm_usuario.btnaccion.setLabel("Guardar");    
-       frm_usuario.TxtidUsuario.setVisible(false);
-            frm_usuario.lblusuario.setVisible(false);
-            frm_usuario.btneliminar.setVisible(false);
+            Dimension FrameSize = Entrada.getSize();
+            Entrada.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+            Entrada.toFront();
+            Entrada.setVisible(true);
+                Entrada.lblaccion.setText("guardar");
+            
             this.dispose();
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null,"Error: " + e.toString());
@@ -178,14 +172,10 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        mostrar("");
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void tablausuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablausuariosMouseClicked
+    private void TablaentradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaentradaMouseClicked
         try {
-            int fila= tablausuarios.rowAtPoint(evt.getPoint());
-            frm_usuario ventana = new frm_usuario();
+            int fila= Tablaentrada.rowAtPoint(evt.getPoint());
+            frm_Entrada ventana = new frm_Entrada();
         FrmPrincipal.escritorio.add(ventana);
         ventana.toFront();
         Dimension desktopSize = FrmPrincipal.escritorio.getSize();
@@ -195,30 +185,31 @@ public class frmTodoUsuario extends javax.swing.JInternalFrame {
         ventana.setVisible(true);  
         
         //Enviando la accion que se requerira segun la funcion
-       frm_usuario.lblAccion.setText("editar");
-       frm_usuario.btnaccion.setLabel("Editar");
-       frm_usuario.TxtidUsuario.setEnabled(false);
+       frm_Entrada.lblaccion.setText("editar");
+       frm_Entrada.btnaccion.setLabel("Editar");
+       frm_Entrada.TxtidEntrada.setEnabled(false);
              
       //Asignando datos a elementos ventana trabajador
-       frm_usuario.TxtidUsuario.setText(tablausuarios.getValueAt(fila, 0).toString());
-              frm_usuario.TxtNombreUsuario.setText(tablausuarios.getValueAt(fila, 1).toString());
-frm_usuario.TxtApellido.setText(tablausuarios.getValueAt(fila, 2).toString());
-frm_usuario.TxtTelefono.setText(tablausuarios.getValueAt(fila, 3).toString());
-frm_usuario.TxtCorreo.setText(tablausuarios.getValueAt(fila, 4).toString());
-frm_usuario.TxtNick.setText(tablausuarios.getValueAt(fila, 5).toString());
-frm_usuario.TxtContrasena.setText(tablausuarios.getValueAt(fila, 6).toString());
-frm_usuario.TxtRol.setText(tablausuarios.getValueAt(fila, 7).toString());
+       frm_Entrada.TxtidEntrada.setText(Tablaentrada.getValueAt(fila, 0).toString());
+        frm_Entrada.TxtFecha.setText(Tablaentrada.getValueAt(fila, 1).toString());
+        frm_Entrada.TxtHora.setText(Tablaentrada.getValueAt(fila, 2).toString());
+        frm_Entrada.TextidUsuario.setText(Tablaentrada.getValueAt(fila, 3).toString());
+
 
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_tablausuariosMouseClicked
+    }//GEN-LAST:event_TablaentradaMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+          mostrar("");
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTable Tablaentrada;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablausuarios;
     // End of variables declaration//GEN-END:variables
 }

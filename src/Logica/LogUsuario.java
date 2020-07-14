@@ -27,7 +27,7 @@ public class LogUsuario {
          public DefaultTableModel mostrar(String buscar) throws SQLException{
     DefaultTableModel modelo;
     
-    String [] titulos = {"ID","Nombre","Apellidos","Telefono 1","Correo","Nick", "Contrasena","Rol"};
+    String [] titulos = {"ID","Nombre","Apellido","Telefono 1","Correo","Nick", "Contrasena","Rol"};
     String [] registro = new String [8];
     
     totalregistros=0;
