@@ -206,9 +206,18 @@ import java.awt.Dimension;
     modelo.addColumn("Clave");
     modelo.addColumn("Nombre");
     modelo.addColumn("unidades");
- 
-    
     tablaentrada.setModel(modelo);
+    formatodetabla();   
+    } 
+    
+     void formatodetabla(){
+    //Columna cantidad
+    tablaentrada.getColumnModel().getColumn(0).setPreferredWidth(100);
+    //Columna codigo
+    tablaentrada.getColumnModel().getColumn(1).setPreferredWidth(200);
+    //colunma Descripcion
+    tablaentrada.getColumnModel().getColumn(2).setPreferredWidth(400);
+
  
     } 
     
@@ -218,43 +227,32 @@ import java.awt.Dimension;
     
     private void tablaentradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaentradaMouseClicked
         try {
-            int fila= tablaentrada.rowAtPoint(evt.getPoint());
-            frm_usuario ventana = new frm_usuario();
-        FrmPrincipal.escritorio.add(ventana);
-        ventana.toFront();
-        Dimension desktopSize = FrmPrincipal.escritorio.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-        ventana.toFront();
-        ventana.setVisible(true);  
-        
-        //Enviando la accion que se requerira segun la funcion
-       frm_usuario.lblAccion.setText("editar");
-       frm_usuario.btnaccion.setLabel("Editar");
-       frm_usuario.TxtidUsuario.setEnabled(false);
-             
-      //Asignando datos a elementos ventana trabajador
-       frm_usuario.TxtidUsuario.setText(tablaentrada.getValueAt(fila, 0).toString());
-frm_usuario.TxtNombreUsuario.setText(tablaentrada.getValueAt(fila, 1).toString());
-frm_usuario.TxtApellido.setText(tablaentrada.getValueAt(fila, 2).toString());
-frm_usuario.TxtTelefono.setText(tablaentrada.getValueAt(fila, 3).toString());
-frm_usuario.TxtCorreo.setText(tablaentrada.getValueAt(fila, 4).toString());
-frm_usuario.TxtNick.setText(tablaentrada.getValueAt(fila, 5).toString());
-frm_usuario.TxtContrasena.setText(tablaentrada.getValueAt(fila, 6).toString());
-frm_usuario.TxtRol.setText(tablaentrada.getValueAt(fila, 7).toString());
+        DefaultTableModel dtm = (DefaultTableModel) tablaentrada.getModel(); //TableProducto es el nombre de mi tabla ;)
+        int fila= tablaentrada.getSelectedRow();
+        int columna = tablaentrada.getSelectedColumn();
+          if (columna==0) {
+            int valor= Integer.parseInt(""+tablaentrada.getValueAt(fila, 0));
+            int nuevacantidad= Integer.parseInt(JOptionPane.showInputDialog("CANTIDAD DE LIBROS"));
+            //Indicando el nuevo valor de la cantidad
+            tablaentrada.setValueAt(nuevacantidad, fila, 0);
+            
+            TxtBuscar.requestFocus(true);//Le regreso el foco a la caja de busqueda
+        }      
 
-        } catch (Exception e) {
-        }
+            } catch (Exception e) {
+            }
     }//GEN-LAST:event_tablaentradaMouseClicked
 
   void llenandotabla(){
       try {
           String []datos=new String[3];
-            datos=logicalibro.mostrarselectivo(TxtBuscar.getText());  
-          modelo.addRow(datos);
-          JOptionPane.showMessageDialog(null,datos [0]);
-          JOptionPane.showMessageDialog(null,datos [1]);
-          JOptionPane.showMessageDialog(null,datos [2]);
+           String []datosseleccionados = new String[3];
+            datos=logicalibro.mostrarselectivo(TxtBuscar.getText()); 
+             datosseleccionados[0]= "1";//Cantidad 
+        datosseleccionados[1]= datos[0];//codigo
+        datosseleccionados[2]= datos[1];//descripcion
+             modelo.addRow(datosseleccionados);
+          
       } catch (Exception e) {
          JOptionPane.showMessageDialog(null,"No encontramos el libro solicitado");
       }
@@ -280,6 +278,6 @@ llenandotabla();        // TODO add your handling code here:
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblusuario;
-    private javax.swing.JTable tablaentrada;
+    public static javax.swing.JTable tablaentrada;
     // End of variables declaration//GEN-END:variables
 }

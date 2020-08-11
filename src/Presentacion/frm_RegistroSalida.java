@@ -7,6 +7,7 @@ package Presentacion;
 
 import Logica.LogLibro;
 import java.awt.Dimension;
+import java.awt.Frame;
     import javax.swing.JOptionPane;
     import javax.swing.table.DefaultTableModel;
 
@@ -22,7 +23,7 @@ import java.awt.Dimension;
     public frm_RegistroSalida() {
         initComponents();
         this.setTitle("Usuarios");
-         tablaentrada.getModel().addTableModelListener(tablaentrada); 
+         tablasalida.getModel().addTableModelListener(tablasalida); 
          titulostabla();
     }
 
@@ -42,7 +43,7 @@ import java.awt.Dimension;
         Ldlid = new javax.swing.JLabel();
         TxtidUsuario = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
-        Txtprofesor = new javax.swing.JTextField();
+        TxtAsesor = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         TxtRFC = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -52,7 +53,7 @@ import java.awt.Dimension;
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaentrada = new javax.swing.JTable();
+        tablasalida = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
@@ -62,15 +63,27 @@ import java.awt.Dimension;
         lblusuario.setForeground(new java.awt.Color(255, 255, 255));
         lblusuario.setText("Usuario");
 
+        TxtNombreusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtNombreusuarioActionPerformed(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Profesor");
+        jLabel3.setText("Asesor");
 
         Ldlid.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Ldlid.setForeground(new java.awt.Color(255, 255, 255));
         Ldlid.setText("id");
 
         jTextField1.setText("jTextField1");
+
+        TxtAsesor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TxtAsesorMouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,7 +105,7 @@ import java.awt.Dimension;
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(Txtprofesor, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TxtAsesor, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblusuario)
                         .addGap(18, 18, 18)
@@ -131,7 +144,7 @@ import java.awt.Dimension;
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1))
-                            .addComponent(Txtprofesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtAsesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TxtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -142,6 +155,17 @@ import java.awt.Dimension;
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_find_user_male_100px_3.png"))); // NOI18N
 
+        TxtBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TxtBuscarMouseClicked(evt);
+            }
+        });
+        TxtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtBuscarActionPerformed(evt);
+            }
+        });
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons8_search_50px.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,11 +173,11 @@ import java.awt.Dimension;
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Eliminar");
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Registrar");
 
-        tablaentrada.setModel(new javax.swing.table.DefaultTableModel(
+        tablasalida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -164,12 +188,12 @@ import java.awt.Dimension;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaentrada.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablasalida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaentradaMouseClicked(evt);
+                tablasalidaMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaentrada);
+        jScrollPane1.setViewportView(tablasalida);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -186,11 +210,11 @@ import java.awt.Dimension;
                 .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,65 +265,68 @@ import java.awt.Dimension;
      public boolean isCellEditable(int row, int column) {return false;}
     };//CReando el objeto de la tabla
     void titulostabla(){
+    modelo.addColumn("Cantidad");
     modelo.addColumn("Clave");
     modelo.addColumn("Nombre");
-    modelo.addColumn("unidades");
- 
-    
-    tablaentrada.setModel(modelo);
- 
+    tablasalida.setModel(modelo);
+    formatodetabla();   
     } 
     
-    
-    
-        
-    
-    private void tablaentradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaentradaMouseClicked
-        try {
-            int fila= tablaentrada.rowAtPoint(evt.getPoint());
-            frm_usuario ventana = new frm_usuario();
-        FrmPrincipal.escritorio.add(ventana);
-        ventana.toFront();
-        Dimension desktopSize = FrmPrincipal.escritorio.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-        ventana.toFront();
-        ventana.setVisible(true);  
-        
-        //Enviando la accion que se requerira segun la funcion
-       frm_usuario.lblAccion.setText("editar");
-       frm_usuario.btnaccion.setLabel("Editar");
-       frm_usuario.TxtidUsuario.setEnabled(false);
-             
-      //Asignando datos a elementos ventana trabajador
-       frm_usuario.TxtidUsuario.setText(tablaentrada.getValueAt(fila, 0).toString());
-frm_usuario.TxtNombreUsuario.setText(tablaentrada.getValueAt(fila, 1).toString());
-frm_usuario.TxtApellido.setText(tablaentrada.getValueAt(fila, 2).toString());
-frm_usuario.TxtTelefono.setText(tablaentrada.getValueAt(fila, 3).toString());
-frm_usuario.TxtCorreo.setText(tablaentrada.getValueAt(fila, 4).toString());
-frm_usuario.TxtNick.setText(tablaentrada.getValueAt(fila, 5).toString());
-frm_usuario.TxtContrasena.setText(tablaentrada.getValueAt(fila, 6).toString());
-frm_usuario.TxtRol.setText(tablaentrada.getValueAt(fila, 7).toString());
+     void formatodetabla(){
+    //Columna cantidad
+    tablasalida.getColumnModel().getColumn(0).setPreferredWidth(100);
+    //Columna codigo
+    tablasalida.getColumnModel().getColumn(1).setPreferredWidth(200);
+    //colunma Descripcion
+    tablasalida.getColumnModel().getColumn(2).setPreferredWidth(400);
 
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_tablaentradaMouseClicked
+    
+    }
+    
+        
+    
+    private void tablasalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablasalidaMouseClicked
+            try {
+        DefaultTableModel dtm = (DefaultTableModel) tablasalida.getModel(); //TableProducto es el nombre de mi tabla ;)
+        int fila= tablasalida.getSelectedRow();
+        int columna = tablasalida.getSelectedColumn();
+          if (columna==0) {
+            int valor= Integer.parseInt(""+tablasalida.getValueAt(fila, 0));
+            int nuevacantidad= Integer.parseInt(JOptionPane.showInputDialog("CANTIDAD DE LIBROS"));
+            //Indicando el nuevo valor de la cantidad
+            tablasalida.setValueAt(nuevacantidad, fila, 0);
+            
+            TxtBuscar.requestFocus(true);//Le regreso el foco a la caja de busqueda
+        }      
+
+            } catch (Exception e) {
+            }
+    }//GEN-LAST:event_tablasalidaMouseClicked
 
   void llenandotabla(){
       try {
           String []datos=new String[3];
-            datos=logicalibro.mostrarselectivo(TxtBuscar.getText());  
-          modelo.addRow(datos);
-          JOptionPane.showMessageDialog(null,datos [0]);
-          JOptionPane.showMessageDialog(null,datos [1]);
-          JOptionPane.showMessageDialog(null,datos [2]);
+           String []datosseleccionados = new String[3];
+            datos=logicalibro.mostrarselectivo(TxtBuscar.getText()); 
+             datosseleccionados[0]= "1";//Cantidad 
+        datosseleccionados[1]= datos[0];//codigo
+        datosseleccionados[2]= datos[1];//descripcion
+             modelo.addRow(datosseleccionados);
+          
       } catch (Exception e) {
          JOptionPane.showMessageDialog(null,"No encontramos el libro solicitado");
       }
   }  
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-llenandotabla();        // TODO add your handling code here:
+//Comprobando que se haya seleccionado un asesor
+ if(TxtAsesor.getText().length()==0){
+            JOptionPane.showMessageDialog(null,"Debes ingresar un asesor");
+           
+            return;
+        }
+        
+        llenandotabla();        // TODO add your handling code here:
             
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -307,14 +334,43 @@ llenandotabla();        // TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtRFCActionPerformed
 
+    private void TxtAsesorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtAsesorMouseClicked
+        try {
+            Frame f = JOptionPane.getFrameForComponent(this);
+            DialogAsesor dialog = new DialogAsesor(f, true);
+            dialog.setSize(600, 300);
+            dialog.setLocationRelativeTo(null);
+            dialog.setVisible(true);
+
+           
+
+            //JOptionPane.showMessageDialog(this,ventanacobro.getContentPane());
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null,"Error al abrir ventana clientes: " + e);
+        }
+        
+    }//GEN-LAST:event_TxtAsesorMouseClicked
+
+    private void TxtNombreusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNombreusuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtNombreusuarioActionPerformed
+
+    private void TxtBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtBuscarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtBuscarMouseClicked
+
+    private void TxtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Ldlid;
+    public static javax.swing.JTextField TxtAsesor;
     public static javax.swing.JTextField TxtBuscar;
     public static javax.swing.JTextField TxtNombreusuario;
-    private javax.swing.JTextField TxtRFC;
+    public static javax.swing.JTextField TxtRFC;
     public static javax.swing.JTextField TxtidUsuario;
-    public static javax.swing.JTextField Txtprofesor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -326,6 +382,6 @@ llenandotabla();        // TODO add your handling code here:
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblusuario;
-    private javax.swing.JTable tablaentrada;
+    private javax.swing.JTable tablasalida;
     // End of variables declaration//GEN-END:variables
 }

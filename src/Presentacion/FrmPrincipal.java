@@ -604,13 +604,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
         boolean mostrar=true;
-        String Nombre=frmtodosalida.getTitle();
+        String Nombre=frmregistrosalida.getTitle();
         for (int a=0;a<escritorio.getComponentCount();a++){     // verificar si es instancia de algun componente que ya este en el jdesktoppane
-        if( frmtodosalida.getClass().isInstance( escritorio.getComponent(a) )){
+        if( frmregistrosalida.getClass().isInstance( escritorio.getComponent(a) )){
         // JOptionPane.showMessageDialog(rootPane, "La ventana "+Nombre+" que interta abrir ya está abierta, cierre la ventana actual e intente nuevamente");
         System.out.println("esta instancia, no se debe mostrar");
-        frmtodosalida.toFront();
-        escritorio.moveToFront(frmtodosalida);
+        frmregistrosalida.toFront();
+        escritorio.moveToFront(frmregistrosalida);
         mostrar=false;
      }else{
         System.out.println("no lo es, puede mostrarse");
@@ -618,12 +618,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
 }
         if(mostrar){
         Dimension desktopSize = escritorio.getSize();
-        frmtodosalida.setSize(escritorio.getSize());
-        escritorio.add(frmtodosalida);
-       
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)frmtodosalida.getUI()).setNorthPane(null);//Con esto quito el title
+        frmregistrosalida.setSize(escritorio.getSize());
+        escritorio.add(frmregistrosalida);
+       frmregistrosalida.TxtNombreusuario.setText(NombreUsuario+" "+apellidoUsuario);
+         frmregistrosalida.TxtidUsuario.setText(idUsuario+"");
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)frmregistrosalida.getUI()).setNorthPane(null);//Con esto quito el title
         }
-         frmtodosalida.show();
+         frmregistrosalida.show();
         } catch (Exception e) {
           JOptionPane.showConfirmDialog(null,"Error: " + e);
         }
